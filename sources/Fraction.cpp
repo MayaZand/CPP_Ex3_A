@@ -111,7 +111,7 @@ bool ariel:: operator==(float num, const Fraction& other)
 {
     return false;
 }
-
+ 
 
 
 bool Fraction:: operator<(const Fraction& other)  

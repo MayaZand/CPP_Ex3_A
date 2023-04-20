@@ -2,7 +2,8 @@
 
 using namespace ariel;
 
-Fraction::Fraction(int numerator, int denominator) //: numerator(numerator), denominator(denominator) 
+Fraction:: Fraction(): numerator(0), denominator(1){};
+Fraction:: Fraction(int numerator, int denominator)
 {   
     
     if (denominator == 0)
@@ -12,6 +13,16 @@ Fraction::Fraction(int numerator, int denominator) //: numerator(numerator), den
     this->denominator=denominator;
     this->numerator=numerator;
 }
+
+Fraction:: Fraction(float number) 
+{
+    int numerator = round(number * 1000);
+    int denominator = 1000;
+    int gcd_num = __gcd(numerator, denominator);
+    numerator /= gcd_num;
+    denominator /= gcd_num;
+}
+
 
 int Fraction:: getNumerator() const
 {
@@ -31,7 +42,7 @@ Fraction Fraction::operator+(const Fraction& other)
     return Fraction(num / gcd, denom / gcd);
 }
 
-Fraction Fraction:: operator+(const float num)
+Fraction Fraction:: operator+(float num)
 {
     return Fraction(2,2);
 }
@@ -49,7 +60,7 @@ Fraction Fraction:: operator-(const Fraction& other)
     return Fraction(num / gcd, denom / gcd);
 }
 
-Fraction Fraction:: operator-(const float num)
+Fraction Fraction:: operator-(float num)
 {
     return Fraction(1,1);
 }
@@ -68,7 +79,7 @@ Fraction Fraction:: operator*(const Fraction& other)
     return Fraction(num / gcd, denom / gcd);
 }
 
-Fraction Fraction:: operator*(const float num)
+Fraction Fraction:: operator*(float num)
 {
     return Fraction(1,1);
 }
@@ -85,7 +96,7 @@ Fraction Fraction:: operator/(const Fraction& other)
     return Fraction(num / gcd, denom / gcd);
 }
 
-Fraction Fraction:: operator/(const float num)
+Fraction Fraction:: operator/(float num)
 {
     return Fraction(1,1);
 }
@@ -102,7 +113,7 @@ bool Fraction:: operator==(const Fraction& other)
     return this->numerator * other.getDenominator() == other.getNumerator() * this->denominator;
 }
 
-bool Fraction:: operator==(const float num)
+bool Fraction:: operator==(float num)
 {
     return false;
 }
@@ -112,14 +123,13 @@ bool ariel:: operator==(float num, const Fraction& other)
     return false;
 }
  
-     
 
 bool Fraction:: operator<(const Fraction& other)  
 {
     return this->numerator * other.getDenominator() < other.getNumerator() * this->denominator;
 }
 
-bool Fraction:: operator<(const float num)
+bool Fraction:: operator<(float num)
 {
     return false;
 }
@@ -138,7 +148,7 @@ bool Fraction:: operator>(const Fraction& other)
     return this->numerator * other.getDenominator() > other.getNumerator() * this->denominator;
 }
 
-bool Fraction:: operator>(const float num)
+bool Fraction:: operator>(float num)
 {
     return false;
 }
@@ -156,7 +166,7 @@ bool Fraction:: operator<=(const Fraction& other)
    return this->numerator * other.getDenominator() <= other.getNumerator() * this->denominator;
 }
 
-bool Fraction::  operator<=(const float num)
+bool Fraction::  operator<=(float num)
 {
     return false;
 }
@@ -168,7 +178,7 @@ bool ariel:: operator<=(float num, const Fraction& other)
 
 
 
-bool Fraction:: operator>=(const float num)
+bool Fraction:: operator>=(float num)
 {
     return false;
 }
